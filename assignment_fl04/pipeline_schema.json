@@ -1,0 +1,34 @@
+{
+  "pipeline_name": "Backend AI Engineering Microservice Generator",
+  "version": "2.0",
+  "steps": [
+    {
+      "step_id": 1,
+      "name": "Gather & Source Grounding",
+      "tool": "NotebookLM / Context Parser",
+      "input": "Raw API Requirements / RFC",
+      "output": "Structured Domain Entity Map"
+    },
+    {
+      "step_id": 2,
+      "name": "Synthesize & Schema Design",
+      "tool": "Claude System Prompt 1 (Architect)",
+      "input": "Domain Entity Map",
+      "output": "Pydantic v2 Models & Database DDL"
+    },
+    {
+      "step_id": 3,
+      "name": "Code & Repository Generation",
+      "tool": "Claude System Prompt 2 (Developer)",
+      "input": "Pydantic Models + DDL",
+      "output": "FastAPI Route Handlers & Storage Repository"
+    },
+    {
+      "step_id": 4,
+      "name": "Audit & Pytest Suite Generation",
+      "tool": "Claude System Prompt 3 (QA & Security)",
+      "input": "FastAPI Code",
+      "output": "Pytest Unit Test Suite + Security Audit Report"
+    }
+  ]
+}

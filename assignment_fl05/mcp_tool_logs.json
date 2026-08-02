@@ -1,0 +1,29 @@
+[
+  {
+    "task_id": 1,
+    "name": "Local Directory & File Inspection",
+    "mcp_primitive": "tool",
+    "tool_name": "list_dir",
+    "arguments": { "DirectoryPath": "f:\\Programming\\flyrank_ai_internship\\assignment_3" },
+    "result": "Discovered Dockerfile, docker-compose.yml, init.sql, main.py, repository.py",
+    "why_chat_alone_cannot_do": "LLMs cannot inspect a user local filesystem without MCP tool execution."
+  },
+  {
+    "task_id": 2,
+    "name": "Git Repository State Querying",
+    "mcp_primitive": "tool",
+    "tool_name": "run_command",
+    "arguments": { "CommandLine": "git status; git remote -v" },
+    "result": "Branch main up to date with origin/main",
+    "why_chat_alone_cannot_do": "LLMs cannot execute local shell commands or query git repository metadata."
+  },
+  {
+    "task_id": 3,
+    "name": "Live HTTP Endpoint Inspection",
+    "mcp_primitive": "resource",
+    "tool_name": "run_command",
+    "arguments": { "CommandLine": "python -c \"import urllib.request; print(urllib.request.urlopen('http://localhost:8000/health').read().decode())\"" },
+    "result": "{\"status\":\"ok\",\"repository\":\"PostgresTaskRepository\"}",
+    "why_chat_alone_cannot_do": "LLMs cannot query active localhost network ports or live Docker containers."
+  }
+]

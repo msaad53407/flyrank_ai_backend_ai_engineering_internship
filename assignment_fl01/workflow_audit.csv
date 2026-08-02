@@ -1,0 +1,13 @@
+Task ID,Task Description,Category,Rationale
+1,Designing Database Schemas & Architecture,collaborate with AI,"Requires domain judgment and tradeoff evaluation, best done through iterative AI brainstorming."
+2,Managing API Security Keys & Secrets,just me,"High security risk and zero-trust policy; credentials must never enter LLM prompts."
+3,Writing FastAPI CRUD Endpoint Boilerplate,delegate with review,"Standardized pattern that AI generates quickly, but requires human code review for edge cases."
+4,Formatting JSON Responses & Style Linting,fully automate,"Deterministic, rule-based execution with zero ambiguity for automated toolchains."
+5,Debugging Complex Multi-table SQL Queries,collaborate with AI,"AI identifies missing indexes or JOIN bottlenecks while human evaluates business logic."
+6,Writing Unit Tests with Pytest,delegate with review,"AI covers positive and negative test cases rapidly, human verifies assertion correctness."
+7,Final Code Review & Security Auditing,just me,"Human developer retains final accountability for safety, performance, and correctness."
+8,Drafting Technical API Documentation,delegate with review,"AI generates initial OpenAPI / markdown docs, human checks parameter accuracy."
+9,Optimizing Dockerfile Multi-stage Builds,collaborate with AI,"AI suggests layer caching optimizations, human verifies build artifact sizes."
+10,Generating Type Annotations & Docstrings,fully automate,"Static analysis tools and AI can automatically insert missing type hints."
+11,Evaluating High-level Architectural Tradeoffs,just me,"Strategic product decisions depend on business context and team capability."
+12,Summarizing Technical RFCs & Specs,collaborate with AI,"AI provides fast initial synthesis, human checks against specific constraints."
