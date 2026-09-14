@@ -1,0 +1,21 @@
+[project]
+name = "assignment-4"
+version = "0.1.0"
+description = "Week 4 Assignment: Auth - Login & Protect with Supabase and FastAPI"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
+    "supabase>=2.8.0",
+    "python-dotenv>=1.0.1",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.2.0",
+    "pyjwt>=2.8.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "httpx>=0.27.0",
+]
