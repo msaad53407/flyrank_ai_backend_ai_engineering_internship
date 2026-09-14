@@ -1,0 +1,65 @@
+@import '@xyflow/react/dist/style.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+
+/* Custom styles for React Flow canvas */
+.react-flow__pane {
+  background-color: #090d16;
+}
+
+.react-flow__handle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #090d16;
+}
+
+.react-flow__handle-top {
+  background-color: #3b82f6;
+}
+
+.react-flow__handle-bottom {
+  background-color: #10b981;
+}
+
+.react-flow__edge-path {
+  stroke: #334155;
+  stroke-width: 2.5;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #60a5fa;
+}
+
+/* Glowing active animated edges */
+@keyframes dash {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.edge-active-yes {
+  stroke: #10b981 !important;
+  stroke-width: 3.5 !important;
+  stroke-dasharray: 6 6;
+  animation: dash 1s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.6));
+}
+
+.edge-active-no {
+  stroke: #f43f5e !important;
+  stroke-width: 3.5 !important;
+  stroke-dasharray: 6 6;
+  animation: dash 1s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.6));
+}
