@@ -227,12 +227,5 @@ cd assignment_9/backend && pytest tests/
 
 ---
 
-## 📑 Detailed Architectural Documentation
-
-For sequence diagrams, SQL aggregation queries, edge cases, and in-depth design rationale for each assignment, consult:
-👉 **[`assignments_deep_dive.md`](./assignments_deep_dive.md)**
-
----
-
 ## 📜 License
 This repository is licensed under the [MIT License](LICENSE).
