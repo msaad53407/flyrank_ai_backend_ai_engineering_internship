@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Books Catalog Intelligence Report</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 15mm 18mm 15mm;
+      @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-size: 9pt;
+        color: #64748b;
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      line-height: 1.5;
+      font-size: 10.5pt;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      margin: 0 0 6px 0;
+      font-size: 20pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .header .meta {
+      font-size: 9.5pt;
+      color: #64748b;
+    }
+
+    .summary-grid {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .summary-card {
+      flex: 1;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 12px 16px;
+    }
+
+    .summary-card .label {
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .summary-card .value {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #0284c7;
+    }
+
+    h2 {
+      font-size: 13pt;
+      color: #0f172a;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      page-break-inside: auto;
+    }
+
+    /* Repeat table header on every page */
+    thead {
+      display: table-header-group;
+    }
+
+    /* Prevent sliced rows across page breaks */
+    tr {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      color: #334155;
+      font-weight: 600;
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 2px solid #cbd5e1;
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 9.5pt;
+    }
+
+    tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 8.5pt;
+      font-weight: 600;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .footer-note {
+      margin-top: 30px;
+      font-size: 8.5pt;
+      color: #94a3b8;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Books to Scrape · Catalog Intelligence Report</h1>
+    <div class="meta">Generated on: {{ generated_date }} | Dataset: {{ summary.total_books }} titles</div>
+  </div>
+
+  <!-- Key Aggregate Metrics -->
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="label">Total Books Cataloged</div>
+      <div class="value">{{ summary.total_books }}</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Average Book Price</div>
+      <div class="value">£{{ summary.avg_price }}</div>
+    </div>
+  </div>
+
+  <!-- Ratings Distribution -->
+  <h2>Distribution by Star Rating</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Star Rating</th>
+        <th class="text-right">Book Count</th>
+        <th class="text-right">Avg Price</th>
+        <th class="text-right">Price Range</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in ratings_breakdown %}
+      <tr>
+        <td><span class="badge">{{ row.rating }} ★</span></td>
+        <td class="text-right">{{ row.book_count }}</td>
+        <td class="text-right">£{{ "%.2f"|format(row.avg_price) }}</td>
+        <td class="text-right">£{{ "%.2f"|format(row.min_price) }} – £{{ "%.2f"|format(row.max_price) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Top 5 Most Expensive Books -->
+  <h2>Top 5 Most Expensive Books</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 8%;">ID</th>
+        <th style="width: 60%;">Title</th>
+        <th style="width: 16%;">Rating</th>
+        <th style="width: 16%;" class="text-right">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in top_5_expensive %}
+      <tr>
+        <td>#{{ book.id }}</td>
+        <td><strong>{{ book.title }}</strong></td>
+        <td>{{ book.rating }} / 5</td>
+        <td class="text-right"><strong>£{{ "%.2f"|format(book.price) }}</strong></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Full Catalog Inventory (Spans Multiple Pages) -->
+  <h2>Full Catalog Inventory ({{ all_books|length }} Books)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 6%;">#</th>
+        <th style="width: 62%;">Title</th>
+        <th style="width: 16%;">Rating</th>
+        <th style="width: 16%;" class="text-right">Price (GBP)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in all_books %}
+      <tr>
+        <td>{{ book.id }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.rating }} ★</td>
+        <td class="text-right">£{{ "%.2f"|format(book.price) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="footer-note">
+    FlyRank Internship · Backend AI Track · Assignment A8 / BE-08 PDF Report Generator · All rights reserved.
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+# Generated artifacts and local database
+report.db
+reports/
+*.pdf
+
+# Python environment & cache
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
