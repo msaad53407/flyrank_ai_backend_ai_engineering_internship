@@ -1,0 +1,108 @@
+{
+  "timestamp": "2026-09-14T15:14:51.977808+00:00",
+  "prompt_version": "v1",
+  "total_cases": 8,
+  "category_matches": 8,
+  "category_accuracy_percent": 100.0,
+  "urgency_matches": 8,
+  "urgency_accuracy_percent": 100.0,
+  "duration_seconds": 12.72,
+  "details": [
+    {
+      "id": "case-1",
+      "text": "We were charged $99 twice on invoice #4810 for our monthly subscription.",
+      "expected_category": "billing",
+      "predicted_category": "billing",
+      "category_match": true,
+      "expected_urgency": "high",
+      "predicted_urgency": "high",
+      "urgency_match": true,
+      "confidence": 0.98,
+      "reason": "Customer reported duplicate charges on their monthly subscription invoice."
+    },
+    {
+      "id": "case-2",
+      "text": "When I try to export audit logs to PDF, the screen goes white and the application crashes.",
+      "expected_category": "bug",
+      "predicted_category": "bug",
+      "category_match": true,
+      "expected_urgency": "normal",
+      "predicted_urgency": "normal",
+      "urgency_match": true,
+      "confidence": 0.97,
+      "reason": "Customer reports application crash and white screen when attempting to export audit logs to PDF."
+    },
+    {
+      "id": "case-3",
+      "text": "Can you please add support for Single Sign-On (SSO) via Okta or SAML?",
+      "expected_category": "feature",
+      "predicted_category": "feature",
+      "category_match": true,
+      "expected_urgency": "low",
+      "predicted_urgency": "low",
+      "urgency_match": true,
+      "confidence": 0.95,
+      "reason": "Customer is requesting support for Single Sign-On (SSO) integration."
+    },
+    {
+      "id": "case-4",
+      "text": "Where can I update our company VAT number and credit card details before next week's renewal?",
+      "expected_category": "billing",
+      "predicted_category": "billing",
+      "category_match": true,
+      "expected_urgency": "normal",
+      "predicted_urgency": "normal",
+      "urgency_match": true,
+      "confidence": 0.97,
+      "reason": "Customer is asking where to update VAT and credit card details for an upcoming renewal."
+    },
+    {
+      "id": "case-5",
+      "text": "Our production webhook endpoints stopped receiving delivery events 30 minutes ago, urgent help needed!",
+      "expected_category": "bug",
+      "predicted_category": "bug",
+      "category_match": true,
+      "expected_urgency": "high",
+      "predicted_urgency": "high",
+      "urgency_match": true,
+      "confidence": 0.99,
+      "reason": "Customer reports a critical production outage where webhook deliveries have ceased."
+    },
+    {
+      "id": "case-6",
+      "text": "It would be awesome to have custom keyboard shortcuts and dark mode on the reports dashboard.",
+      "expected_category": "feature",
+      "predicted_category": "feature",
+      "category_match": true,
+      "expected_urgency": "low",
+      "predicted_urgency": "low",
+      "urgency_match": true,
+      "confidence": 0.95,
+      "reason": "Customer requests new UI features like custom keyboard shortcuts and dark mode."
+    },
+    {
+      "id": "case-7",
+      "text": "Hi team, I would like to schedule a call to explore a reseller partnership with your company.",
+      "expected_category": "other",
+      "predicted_category": "other",
+      "category_match": true,
+      "expected_urgency": "low",
+      "predicted_urgency": "low",
+      "urgency_match": true,
+      "confidence": 0.9,
+      "reason": "Customer is inquiring about a business partnership, which is outside standard support categories."
+    },
+    {
+      "id": "case-8",
+      "text": "Can you tell me what the best recipe for homemade sourdough bread is?",
+      "expected_category": "other",
+      "predicted_category": "other",
+      "category_match": true,
+      "expected_urgency": "low",
+      "predicted_urgency": "low",
+      "urgency_match": true,
+      "confidence": 0.25,
+      "reason": "Message is ambiguous or outside standard support domains."
+    }
+  ]
+}

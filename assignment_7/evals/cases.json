@@ -1,0 +1,58 @@
+[
+  {
+    "id": "case-1",
+    "text": "We were charged $99 twice on invoice #4810 for our monthly subscription.",
+    "expected_category": "billing",
+    "expected_urgency": "high",
+    "description": "Clear duplicate billing report requiring rapid financial attention."
+  },
+  {
+    "id": "case-2",
+    "text": "When I try to export audit logs to PDF, the screen goes white and the application crashes.",
+    "expected_category": "bug",
+    "expected_urgency": "normal",
+    "description": "Functional defect in log export pipeline."
+  },
+  {
+    "id": "case-3",
+    "text": "Can you please add support for Single Sign-On (SSO) via Okta or SAML?",
+    "expected_category": "feature",
+    "expected_urgency": "low",
+    "description": "Standard enterprise feature enhancement request."
+  },
+  {
+    "id": "case-4",
+    "text": "Where can I update our company VAT number and credit card details before next week's renewal?",
+    "expected_category": "billing",
+    "expected_urgency": "normal",
+    "description": "Routine account billing inquiry."
+  },
+  {
+    "id": "case-5",
+    "text": "Our production webhook endpoints stopped receiving delivery events 30 minutes ago, urgent help needed!",
+    "expected_category": "bug",
+    "expected_urgency": "high",
+    "description": "Severe system availability issue affecting customer production."
+  },
+  {
+    "id": "case-6",
+    "text": "It would be awesome to have custom keyboard shortcuts and dark mode on the reports dashboard.",
+    "expected_category": "feature",
+    "expected_urgency": "low",
+    "description": "UI ergonomics feature request."
+  },
+  {
+    "id": "case-7",
+    "text": "Hi team, I would like to schedule a call to explore a reseller partnership with your company.",
+    "expected_category": "other",
+    "expected_urgency": "low",
+    "description": "Ambiguous partnership inquiry not related to billing, bugs, or software features."
+  },
+  {
+    "id": "case-8",
+    "text": "Can you tell me what the best recipe for homemade sourdough bread is?",
+    "expected_category": "other",
+    "expected_urgency": "low",
+    "description": "Completely out-of-domain prompt testing the 'when unsure' rule."
+  }
+]
