@@ -1,24 +1,24 @@
 """
 Stage 0 Checkpoint: Basic provider connectivity test.
-Queries the configured LLM to respond with 'ready'.
+Queries the configured LLM using LiteLLM / Gemini to respond with 'ready'.
 """
 
 import os
 from dotenv import load_dotenv
-from openai import OpenAI
+import litellm
 
 load_dotenv()
 
-base_url = os.environ.get("LLM_BASE_URL", "http://localhost:11434/v1/")
-api_key = os.environ.get("LLM_API_KEY", "ollama")
-model = os.environ.get("LLM_MODEL", "orieg/gemma3-tools:1b")
+api_key = os.environ.get("GEMINI_API_KEY", "")
+model = os.environ.get("LLM_MODEL", "gemini/gemini-2.5-flash")
 
-client = OpenAI(base_url=base_url, api_key=api_key)
+if api_key:
+    os.environ["GEMINI_API_KEY"] = api_key
 
-response = client.chat.completions.create(
+response = litellm.completion(
     model=model,
     messages=[{"role": "user", "content": "Reply with exactly the word: ready"}],
     temperature=0.0,
 )
 
-print(response.choices[0].message.content)
+print(response.choices[0].message.content.strip())
