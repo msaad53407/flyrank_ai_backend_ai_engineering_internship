@@ -4,6 +4,10 @@ Your First Background Job
 """
 
 from fastapi import FastAPI
+import inngest.fast_api
+
+from src.functions import say_hello
+from src.inngest_client import inngest_client
 
 app = FastAPI(
     title="Report Background Job API",
@@ -16,6 +20,13 @@ app = FastAPI(
 def health_check():
     return {"status": "ok"}
 
+
+# Mount Inngest handlers at /api/inngest
+inngest.fast_api.serve(
+    app,
+    inngest_client,
+    [say_hello],
+)
 
 if __name__ == "__main__":
     import uvicorn
