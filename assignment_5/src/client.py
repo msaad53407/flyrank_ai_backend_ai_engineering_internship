@@ -89,6 +89,7 @@ class PoliteClient:
                 response = requests.get(url, headers=headers, timeout=self.timeout)
 
                 if response.status_code == 200:
+                    response.encoding = "utf-8"
                     html = response.text
                     cache_file.write_text(html, encoding="utf-8")
                     self.fetch_count += 1
