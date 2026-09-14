@@ -10,7 +10,7 @@ import litellm
 load_dotenv()
 
 api_key = os.environ.get("GEMINI_API_KEY", "")
-model = os.environ.get("LLM_MODEL", "gemini/gemini-2.5-flash")
+model = os.environ.get("LLM_MODEL", "gemini/gemini-3.1-flash-lite")
 
 if api_key:
     os.environ["GEMINI_API_KEY"] = api_key

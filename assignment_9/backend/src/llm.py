@@ -7,7 +7,7 @@ import litellm
 
 # Configure LiteLLM
 litellm.drop_params = True
-MODEL_NAME = "gemini/gemini-2.5-flash"
+MODEL_NAME = "gemini/gemini-3.1-flash-lite"
 
 
 def evaluate_decision_prompt(prompt: str, input_context: str) -> Dict[str, Any]:

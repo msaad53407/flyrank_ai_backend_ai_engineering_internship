@@ -55,7 +55,7 @@ const Toolbar = ({
             </span>
           </h1>
           <p className="text-[11px] text-slate-400">
-            Autonomous branching workflows evaluated step-by-step with Gemini 2.5 Flash
+            Autonomous branching workflows evaluated step-by-step with Gemini 3.1 Flash Lite
           </p>
         </div>
       </div>

@@ -22,9 +22,9 @@ graph TD
     subgraph Backend ["FastAPI + Inngest Execution Engine"]
         H["POST /api/execute"] --> I["Inngest Client Event: decision-flow/run"]
         I --> J["Inngest Function: execute_decision_flow"]
-        J -->|step.run: eval-node-1| K["Gemini 2.5 Flash (Strict YES/NO)"]
+        J -->|step.run: eval-node-1| K["Gemini 3.1 Flash Lite (Strict YES/NO)"]
         K -->|Branch Decision| L["Traverse Outgoing Edge"]
-        L -->|step.run: eval-node-2| M["Gemini 2.5 Flash (Strict YES/NO)"]
+        L -->|step.run: eval-node-2| M["Gemini 3.1 Flash Lite (Strict YES/NO)"]
         M -->|Terminal Action Reached| N["Persist Execution Run in SQLite"]
         N --> O["Return Full Trace & Active Path to Client"]
     end
@@ -48,7 +48,7 @@ graph TD
 
 ### Phase 3: Inngest Step Orchestration & Strict AI Decisions
 - **Inngest Workflow Function (`decision-flow/run`)**: Each decision node maps to an Inngest step (`ctx.step.run(...)`) ensuring durable, observable step-by-step execution.
-- **Strict YES / NO Enforcement**: Prompts are evaluated using **Gemini 2.5 Flash** with JSON schema enforcement and regex validation, returning strictly `YES` or `NO` with one-sentence reasoning.
+- **Strict YES / NO Enforcement**: Prompts are evaluated using **Gemini 3.1 Flash Lite** with JSON schema enforcement and regex validation, returning strictly `YES` or `NO` with one-sentence reasoning.
 - **Dynamic Branch Traversal**: Edge traversal dynamically inspects the model's decision and routes to the matching edge (`sourceHandle="yes"` or `"no"`).
 
 ### Phase 4: Polish & Developer Experience (All 7 Features Built)

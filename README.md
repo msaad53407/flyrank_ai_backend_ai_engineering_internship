@@ -40,14 +40,14 @@ graph TD
     end
 
     subgraph AIGuardrails ["5. LLM Triage & Reliability (BE-07)"]
-        M["Support Ticket"] -->|Pre-Flight Check 400| N["Gemini 2.5 Flash via LiteLLM"]
+        M["Support Ticket"] -->|Pre-Flight Check 400| N["Gemini 3.1 Flash Lite via LiteLLM"]
         N -->|Strict Schema| O["Urgency, Category, Sentiment"]
         N -.->|Schema Repair / Fallback| P["Quarantine Log: logs/quarantine.jsonl"]
     end
 
     subgraph Capstone ["6. Visual AI Decision Flow (BE-09 Capstone)"]
         Q["React Flow Canvas (@xyflow/react)"] -->|User Trigger| R["Inngest Step Workflow Engine"]
-        R -->|step.run Decision Nodes| S["Gemini 2.5 Flash (Strict YES/NO)"]
+        R -->|step.run Decision Nodes| S["Gemini 3.1 Flash Lite (Strict YES/NO)"]
         S -->|Dynamic Edge Routing| T["Active Halo Highlights & Animated Paths"]
         T -->|Terminal Action| U["Execution Trace Drawer & Metrics"]
     end
@@ -72,7 +72,7 @@ All 6 required assignments have been implemented in modular subdirectories, veri
 | [`assignment_4/`](./assignment_4) | **BE-04** | Fast-API + Supabase Auth & JWT Claims | Stateless HS256 JWT signature verification, PyJWT claim validation, and RBAC (`user` vs `admin`). | **Submitted** |
 | [`assignment_5/`](./assignment_5) | **BE-05** | The Polite Web Scraper | Rate-limited crawling (1.0s delay), Pydantic schema validation, local disk cache, and 404 survival. | **Submitted** |
 | [`assignment_6/`](./assignment_6) | **BE-06** | Background Job Service with Inngest | "Accept fast, work in background" (HTTP 202 in ~10ms), multi-step workflows with retries, and cron heartbeats. | **Submitted** |
-| [`assignment_7/`](./assignment_7) | **BE-07** | Customer Support Ticket Triage Service | Gemini 2.5 Flash via LiteLLM, versioned prompt contracts, pre-flight checks, self-healing schemas, cost logging, and 100% evals. | **Submitted** |
+| [`assignment_7/`](./assignment_7) | **BE-07** | Customer Support Ticket Triage Service | Gemini 3.1 Flash Lite via LiteLLM, versioned prompt contracts, pre-flight checks, self-healing schemas, cost logging, and 100% evals. | **Submitted** |
 | [`assignment_8/`](./assignment_8) | **BE-08** | PDF Report Generator & Artifact Handling | SQLite SQL aggregations, Playwright HTML-to-PDF rendering with print CSS page-break prevention, "Store and Link" API, and daily idempotency. | **Submitted** |
 | [`assignment_9/`](./assignment_9) | **BE-09** | AI Decision Flow (React Flow + Inngest Capstone) | Interactive DAG canvas (`@xyflow/react`), durable Inngest step routing, strict binary YES/NO LLM branching, animated glowing paths, and SQLite persistence. | **Submitted** |
 
@@ -128,7 +128,7 @@ All 6 required assignments have been implemented in modular subdirectories, veri
 
 ### 4. Support Ticket Triage Service (`assignment_7/`)
 * **Problem**: Production LLM integrations must guard against hallucinated schemas, runaway token costs, and high latency.
-* **Solution**: Built an automated ticket classifier using **Gemini 2.5 Flash** via LiteLLM. Enforces versioned prompt contracts (`prompts/triage-v1.md`) with pre-flight input validation (400 on empty strings), an automatic repair loop, quarantine logging (`logs/quarantine.jsonl`), and a kill switch (`LLM_ENABLED=false`).
+* **Solution**: Built an automated ticket classifier using **Gemini 3.1 Flash Lite** via LiteLLM. Enforces versioned prompt contracts (`prompts/triage-v1.md`) with pre-flight input validation (400 on empty strings), an automatic repair loop, quarantine logging (`logs/quarantine.jsonl`), and a kill switch (`LLM_ENABLED=false`).
 * **Cost & Performance**: ~$0.0001 per ticket ($1.06 per 10k tickets) at ~1.2s latency.
 * **Evaluation**: **8/8 (100%)** accuracy on ground-truth benchmark suite.
 
@@ -148,7 +148,7 @@ All 6 required assignments have been implemented in modular subdirectories, veri
 * **Solution**:
   - **Frontend**: React 18 + Vite + `@xyflow/react` + Tailwind CSS. Custom `AIDecisionNode` with editable prompts, status rings, reasoning snippets, and dual `YES`/`NO` handles. Custom `DecisionEdge` with animated glowing dash strokes.
   - **Backend**: FastAPI + Inngest Python SDK. Each graph node executes as a durable Inngest step (`ctx.step.run(...)`).
-  - **Decision Engine**: Gemini 2.5 Flash evaluates the prompt against ticket context, strictly returning `YES` or `NO` with justification, dynamically traversing the matching edge.
+  - **Decision Engine**: Gemini 3.1 Flash Lite evaluates the prompt against ticket context, strictly returning `YES` or `NO` with justification, dynamically traversing the matching edge.
   - **Single-Port Distribution**: Pre-built static assets are served directly from FastAPI on `http://localhost:8000`.
 
 ---
@@ -162,7 +162,7 @@ All 6 required assignments have been implemented in modular subdirectories, veri
 | **Frontend Frameworks** | React 18, Vite, `@xyflow/react` (React Flow), Tailwind CSS, Lucide Icons |
 | **Workflow & Orchestration** | Inngest (Python SDK), Inngest Dev Server |
 | **Databases & Storage** | SQLite, PostgreSQL, Supabase Cloud Auth |
-| **AI & LLM Services** | Google Gemini 2.5 Flash, LiteLLM, Google GenAI SDK |
+| **AI & LLM Services** | Google Gemini 3.1 Flash Lite, LiteLLM, Google GenAI SDK |
 | **Rendering & Automation** | Playwright (Headless Chromium), WeasyPrint, BeautifulSoup4 |
 | **Testing & Tooling** | Pytest, Pytest-Asyncio, HTTPX, uv, Docker Compose |
 

@@ -188,7 +188,7 @@ sequenceDiagram
 ### 1. What Was Required
 - **Core Challenge**: Raw LLMs are non-deterministic, can hallucinate invalid categories, fail under high load, or run up excessive token costs without guardrails.
 - **Requirements**:
-  - Build an automated ticket classification service with **LiteLLM** and a real model (switched to **Google Gemini 2.5 Flash**).
+  - Build an automated ticket classification service with **LiteLLM** and a real model (switched to **Google Gemini 3.1 Flash Lite**).
   - Versioned prompt (`prompts/triage-v1.md`) specifying strict JSON schema:
     - `category`: `BILLING`, `TECH_SUPPORT`, `FEATURE_REQUEST`, `GENERAL`
     - `urgency`: `LOW`, `MEDIUM`, `HIGH`, `CRITICAL`
@@ -223,7 +223,7 @@ graph TD
     B -- YES --> D{Kill Switch Active: LLM_ENABLED=false?}
     D -- YES --> E[Rule-Based Heuristic Fallback]
     E --> F[Return 200 Classification]
-    D -- NO --> G[Call Gemini 2.5 Flash via LiteLLM]
+    D -- NO --> G[Call Gemini 3.1 Flash Lite via LiteLLM]
     G --> H{Valid JSON & Valid Enums?}
     H -- YES --> I[Log Tokens & Estimated Cost to cost.log]
     I --> F
@@ -237,7 +237,7 @@ graph TD
 ### 4. Key Architectural Decisions
 - **Zero-Token Pre-Validation**: Rejecting empty/whitespace tickets before calling the model protects against accidental loops and malicious denial-of-wallet attacks.
 - **Quarantine Logging**: Rather than returning a 500 error to the client when the LLM outputs malformed text, the ticket is classified with a safe fallback (`category: GENERAL`, `urgency: MEDIUM`), and the raw response is quarantined for engineering review.
-- **Cost Efficiency**: Using Gemini 2.5 Flash kept cost to ~$0.0001 per ticket ($1.06 per 10,000 tickets) with average latency under 1.2 seconds.
+- **Cost Efficiency**: Using Gemini 3.1 Flash Lite kept cost to ~$0.0001 per ticket ($1.06 per 10,000 tickets) with average latency under 1.2 seconds.
 - **Evaluation Benchmark**: The eval suite achieved **8/8 (100%)** accuracy on ground-truth support tickets.
 
 ---
@@ -331,7 +331,7 @@ graph LR
 - **Backend Architecture (`assignment_9/backend/`)**:
   - `src/config.py`: Inngest client (`is_production=False`), Gemini API configuration.
   - `src/models.py`: Pydantic models for `Node`, `Edge`, `WorkflowGraph`, `NodeStepResult`, and `ExecutionRunResult`.
-  - `src/llm.py`: Strict binary decision engine using Gemini 2.5 Flash with exponential backoff on rate limits.
+  - `src/llm.py`: Strict binary decision engine using Gemini 3.1 Flash Lite with exponential backoff on rate limits.
   - `src/db.py`: SQLite persistence layer for workflows (`workflows` table) and execution history (`executions` table).
   - `src/engine.py`: Graph traversal engine resolving start nodes, evaluating branches, and recording active paths.
   - `src/inngest_flow.py`: Inngest workflow function `execute-decision-flow` mapping each node to a durable step (`step.run`).
@@ -367,7 +367,7 @@ graph TD
         
         subgraph StepExecution ["For Each Node in Path (step.run)"]
             StepLoop --> EvalPrompt[Inject Ticket Text into Decision Prompt]
-            EvalPrompt --> LLM[Gemini 2.5 Flash via LiteLLM]
+            EvalPrompt --> LLM[Gemini 3.1 Flash Lite via LiteLLM]
             LLM --> ParseDecision{Model Returns YES or NO?}
             ParseDecision -- YES --> EdgeYes[Follow YES Edge (sourceHandle: 'yes')]
             ParseDecision -- NO --> EdgeNo[Follow NO Edge (sourceHandle: 'no')]
@@ -415,6 +415,6 @@ Testing scenario with input:
 | **BE-04** | FastAPI, Supabase, PyJWT | Stateless local HS256 JWT signature validation & RBAC | Automated Pytest | `main` (`235fac2`) | **Submitted** |
 | **BE-05** | Python, BeautifulSoup, Pydantic | Polite web scraping (1s sleep, disk cache, 404 survival) | 6/6 Pytest | `main` (`4f39fde`) | **Submitted** |
 | **BE-06** | FastAPI, Inngest Python SDK | Non-blocking HTTP 202 dispatch in ~10ms with step recovery | 8/8 Pytest | `main` (`1d8e2a5`) | **Submitted** |
-| **BE-07** | FastAPI, LiteLLM, Gemini 2.5 | Versioned prompt, schema validation, quarantine logging, kill switch | 8/8 Evals (100%), 6/6 Pytest | `main` (`4d95696`) | **Submitted** |
+| **BE-07** | FastAPI, LiteLLM, Gemini 3.1 | Versioned prompt, schema validation, quarantine logging, kill switch | 8/8 Evals (100%), 6/6 Pytest | `main` (`4d95696`) | **Submitted** |
 | **BE-08** | FastAPI, SQLite, Playwright | "Store and link" PDF generator, A4 print CSS page-break fix, idempotency | 5/5 Pytest | `main` (`98b9374`) | **Submitted** |
 | **BE-09** | React Flow, Inngest, FastAPI, Gemini | Visual AI decision graph with durable step branching and live trace | 6/6 Pytest | `main` (`ed0bda1`) | **Submitted** |

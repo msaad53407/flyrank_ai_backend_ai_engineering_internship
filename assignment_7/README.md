@@ -1,6 +1,6 @@
 # Support Message Triage API (FlyRank Internship · Week 6 · Assignment A17 / BE-07)
 
-A robust, production-ready AI classification microservice built with **FastAPI**, **Pydantic**, and **LiteLLM / Google GenAI SDK** (powered by `gemini-2.5-flash`). It accepts unstructured incoming customer support tickets, validates the input payload, queries a versioned LLM prompt specification, enforces strict schema guardrails, repairs validation failures, and routes the ticket to the appropriate team with priority metadata and confidence scoring.
+A robust, production-ready AI classification microservice built with **FastAPI**, **Pydantic**, and **LiteLLM / Google GenAI SDK** (powered by `gemini-3.1-flash-lite`). It accepts unstructured incoming customer support tickets, validates the input payload, queries a versioned LLM prompt specification, enforces strict schema guardrails, repairs validation failures, and routes the ticket to the appropriate team with priority metadata and confidence scoring.
 
 ---
 
@@ -37,7 +37,7 @@ Contents of `.env`:
 ```env
 GEMINI_API_KEY=your_gemini_api_key_here
 LLM_PROVIDER=litellm
-LLM_MODEL=gemini/gemini-2.5-flash
+LLM_MODEL=gemini/gemini-3.1-flash-lite
 LLM_STUB=0
 LLM_ENABLED=true
 LLM_TIMEOUT=30.0
@@ -108,7 +108,7 @@ The integration uses **LiteLLM**, allowing you to switch between hosted frontier
 
 | Provider | `LLM_PROVIDER` | `LLM_MODEL` | Required Key |
 | :--- | :--- | :--- | :--- |
-| **Google Gemini (Active)** | `litellm` | `gemini/gemini-2.5-flash` | `GEMINI_API_KEY` |
+| **Google Gemini (Active)** | `litellm` | `gemini/gemini-3.1-flash-lite` | `GEMINI_API_KEY` |
 | **OpenRouter Hosted** | `litellm` | `openrouter/openai/gpt-4o-mini` | `OPENROUTER_API_KEY` |
 | **Local Ollama** | `litellm` | `ollama/qwen2.5-coder:latest` | None (`ollama`) |
 | **Groq Llama-3** | `litellm` | `groq/llama-3.3-70b-versatile` | `GROQ_API_KEY` |
@@ -121,7 +121,7 @@ An automated benchmark runner (`evals/run_evals.py`) evaluates 8 hand-labeled ed
 
 - **Benchmark Date**: 2026-09-14
 - **Prompt Version**: `v1` (`prompts/triage-v1.md`)
-- **Model**: `gemini-2.5-flash`
+- **Model**: `gemini-3.1-flash-lite`
 - **Category Accuracy**: **8 / 8 (100.0%)**
 - **Urgency Accuracy**: **8 / 8 (100.0%)**
 - **Total Eval Duration**: 12.72s
@@ -152,7 +152,7 @@ Every call writes a structured JSON log entry to `logs/cost.log`:
 {
   "timestamp": "2026-09-14T15:14:41.215152+00:00",
   "prompt_version": "v1",
-  "model": "gemini/gemini-2.5-flash",
+  "model": "gemini/gemini-3.1-flash-lite",
   "prompt_tokens": 819,
   "completion_tokens": 101,
   "total_tokens": 920,
@@ -164,7 +164,7 @@ Every call writes a structured JSON log entry to `logs/cost.log`:
 
 ### Cost Model for 10,000 Requests / Day:
 - **Per Call**: ~820 prompt tokens + ~120 completion tokens.
-- **Gemini 2.5 Flash Rates**: \$0.075 / 1M prompt tokens, \$0.30 / 1M completion tokens.
+- **Gemini 3.1 Flash Lite Rates**: \$0.075 / 1M prompt tokens, \$0.30 / 1M completion tokens.
 - **Cost per Call**:
   $$\frac{820}{1,000,000} \times \$0.075 + \frac{120}{1,000,000} \times \$0.30 = \$0.0000615 + \$0.000036 = \$0.0000975$$
 - **Projected Daily Cost (10,000 calls/day)**: **~$0.98 – $1.06 per day** (less than a cup of coffee).

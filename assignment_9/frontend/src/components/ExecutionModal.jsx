@@ -42,7 +42,7 @@ const ExecutionModal = ({ isOpen, onClose, onExecute, isExecuting }) => {
             <div>
               <h2 className="text-base font-semibold text-white">Execute Decision Flow</h2>
               <p className="text-xs text-slate-400">
-                Inngest step-by-step evaluation with Gemini 2.5 Flash
+                Inngest step-by-step evaluation with Gemini 3.1 Flash Lite
               </p>
             </div>
           </div>

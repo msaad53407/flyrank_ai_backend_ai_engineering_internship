@@ -15,7 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 # LLM Provider Configuration
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 LLM_PROVIDER = os.environ.get("LLM_PROVIDER", "litellm")
-LLM_MODEL = os.environ.get("LLM_MODEL", "gemini/gemini-2.5-flash")
+LLM_MODEL = os.environ.get("LLM_MODEL", "gemini/gemini-3.1-flash-lite")
 
 # Operational Controls
 LLM_STUB = os.environ.get("LLM_STUB", "0").lower() in ("1", "true", "yes")

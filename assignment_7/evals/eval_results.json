@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-09-14T15:14:51.977808+00:00",
+  "timestamp": "2026-09-14T19:58:37.821016+00:00",
   "prompt_version": "v1",
   "total_cases": 8,
   "category_matches": 8,
   "category_accuracy_percent": 100.0,
   "urgency_matches": 8,
   "urgency_accuracy_percent": 100.0,
-  "duration_seconds": 12.72,
+  "duration_seconds": 20.25,
   "details": [
     {
       "id": "case-1",
@@ -17,8 +17,8 @@
       "expected_urgency": "high",
       "predicted_urgency": "high",
       "urgency_match": true,
-      "confidence": 0.98,
-      "reason": "Customer reported duplicate charges on their monthly subscription invoice."
+      "confidence": 0.99,
+      "reason": "Customer reported a duplicate charge on their monthly subscription invoice."
     },
     {
       "id": "case-2",
@@ -29,8 +29,8 @@
       "expected_urgency": "normal",
       "predicted_urgency": "normal",
       "urgency_match": true,
-      "confidence": 0.97,
-      "reason": "Customer reports application crash and white screen when attempting to export audit logs to PDF."
+      "confidence": 0.98,
+      "reason": "The user is reporting a consistent application crash when attempting to export audit logs to PDF."
     },
     {
       "id": "case-3",
@@ -41,8 +41,8 @@
       "expected_urgency": "low",
       "predicted_urgency": "low",
       "urgency_match": true,
-      "confidence": 0.95,
-      "reason": "Customer is requesting support for Single Sign-On (SSO) integration."
+      "confidence": 0.98,
+      "reason": "The customer is requesting the addition of new authentication integration features."
     },
     {
       "id": "case-4",
@@ -53,8 +53,8 @@
       "expected_urgency": "normal",
       "predicted_urgency": "normal",
       "urgency_match": true,
-      "confidence": 0.97,
-      "reason": "Customer is asking where to update VAT and credit card details for an upcoming renewal."
+      "confidence": 0.98,
+      "reason": "Customer is requesting instructions on how to update payment and tax information for an upcoming subscription renewal."
     },
     {
       "id": "case-5",
@@ -66,7 +66,7 @@
       "predicted_urgency": "high",
       "urgency_match": true,
       "confidence": 0.99,
-      "reason": "Customer reports a critical production outage where webhook deliveries have ceased."
+      "reason": "The customer reports a critical service disruption regarding production webhook delivery."
     },
     {
       "id": "case-6",
@@ -77,8 +77,8 @@
       "expected_urgency": "low",
       "predicted_urgency": "low",
       "urgency_match": true,
-      "confidence": 0.95,
-      "reason": "Customer requests new UI features like custom keyboard shortcuts and dark mode."
+      "confidence": 0.98,
+      "reason": "The user is requesting specific UI and usability enhancements for the reports dashboard."
     },
     {
       "id": "case-7",
@@ -89,8 +89,8 @@
       "expected_urgency": "low",
       "predicted_urgency": "low",
       "urgency_match": true,
-      "confidence": 0.9,
-      "reason": "Customer is inquiring about a business partnership, which is outside standard support categories."
+      "confidence": 0.95,
+      "reason": "The inquiry is a business development request regarding a partnership rather than a technical or billing support issue."
     },
     {
       "id": "case-8",
@@ -101,7 +101,7 @@
       "expected_urgency": "low",
       "predicted_urgency": "low",
       "urgency_match": true,
-      "confidence": 0.25,
+      "confidence": 0.35,
       "reason": "Message is ambiguous or outside standard support domains."
     }
   ]
