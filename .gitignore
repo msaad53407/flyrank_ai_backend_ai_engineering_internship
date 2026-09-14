@@ -1,1 +1,8 @@
-assignments_deep_dive.md
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Environment
+.env
