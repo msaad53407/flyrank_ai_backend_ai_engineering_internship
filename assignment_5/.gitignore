@@ -1,0 +1,9 @@
+# Cache directory (Stage 1-5 HTML cache - do not commit)
+cache/
+
+# Python virtual environment & cache
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
